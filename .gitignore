@@ -1,0 +1,19 @@
+# Discos de máquinas virtuales (pesan GB, GitHub los rechaza)
+*.vmdk
+*.vdi
+*.ova
+*.vmx
+*.vmsd
+*.vmxf
+*.nvram
+*.vbox
+
+# Secretos: nunca subir
+.env
+*.key
+*.pem
+secrets/
+
+# Sistema
+.DS_Store
+Thumbs.db
