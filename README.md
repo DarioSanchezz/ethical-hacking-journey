@@ -19,13 +19,15 @@ Una lección al día.
 | 01 | [Bases, mentalidad y terminal](lessons/01-bases-y-terminal.md) | 16/11/2026 | Hecha |
 | 02 | [Redes: TCP/IP, puertos, DNS y HTTP](lessons/02-redes-tcpip-dns.md) | 16/11/2026 | Hecha |
 | 03 | [Reconocimiento con nmap](lessons/03-nmap.md) | 17/11/2026 | Hecha |
-| 04 | Enumeración y búsqueda de vulnerabilidades | | Pendiente |
+| 04 | [Enumeración y búsqueda de vulnerabilidades](lessons/04-enumeracion-y-vulnerabilidades.md) | 18/11/2026 | Hecha |
 
 ## Writeups
 - [Escaneo de Metasploitable](writeups/escaneo-metasploitable.md)
 
 ## Cheatsheets
+- [Guía rápida: "quiero hacer X → uso Y"](cheatsheets/00-guia-rapida.md)
 - [nmap](cheatsheets/nmap.md)
+- [Enumeración y búsqueda de vulnerabilidades](cheatsheets/enumeracion.md)
 
 ## Aviso legal
 Todo el contenido se ha practicado en entornos propios o de entrenamiento
