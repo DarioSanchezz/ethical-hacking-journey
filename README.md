@@ -22,10 +22,12 @@ Una lección al día.
 | 04 | [Enumeración y búsqueda de vulnerabilidades](lessons/04-enumeracion-y-vulnerabilidades.md) | 18/11/2026 | Hecha |
 
 | 05 | [Primera explotación con Metasploit](lessons/05-metasploit-explotacion.md) | 19/11/2026 | Hecha |
+| 06 | [Cracking de contraseñas](lessons/06-cracking-contraseñas.md) | 20/11/2026 | Hecha |
 
 ## Writeups
 - [Escaneo de Metasploitable](writeups/escaneo-metasploitable.md)
 - [Explotación de vsftpd 2.3.4 con Metasploit](writeups/explotacion-vsftpd-metasploitable.md)
+- [Cracking de contraseñas en Metasploitable](writeups/cracking-metasploitable.md)
 
 ## Cheatsheets
 - [Guía rápida: "quiero hacer X → uso Y"](cheatsheets/00-guia-rapida.md)
