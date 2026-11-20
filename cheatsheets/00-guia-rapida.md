@@ -5,7 +5,7 @@ conseguir**, no por herramienta. `IP` = la IP del objetivo (en mi lab, Metasploi
 
 > Solo se practica en mi laboratorio o con autorización por escrito.
 
-**Última actualización:** Lección 04
+**Última actualización:** Lección 05 (con incidencia real resuelta)
 
 ---
 
@@ -186,6 +186,38 @@ Gravedad CVSS: 0,1-3,9 baja · 4,0-6,9 media · 7,0-8,9 alta · 9,0-10,0 crític
 
 ---
 
+---
+
+## 15. Explotación con Metasploit
+| Quiero... | Comando |
+|---|---|
+| Arrancar Metasploit | `sudo msfconsole` |
+| Buscar un exploit por software | `search nombre` |
+| Seleccionar un módulo | `use ruta/del/modulo` |
+| Ver qué hay que configurar | `options` (o `show options`) |
+| Poner la IP objetivo | `set RHOSTS IP` |
+| Ver payloads disponibles | `show payloads` |
+| Elegir un payload | `set payload nombre` |
+| Lanzar el exploit | `exploit` (o `run`) |
+| Confirmar que estoy dentro | `whoami`, `id`, `hostname` |
+| Salir de la shell / de msfconsole | `exit` |
+| Borrar un payload que se ha quedado "pegado" de antes | `unset payload` |
+| Borrar todas las variables guardadas en la sesión | `unset all` |
+
+**Flujo fijo:** `search` → `use` → `options` → `set RHOSTS IP` → `exploit`.
+
+## 16. Dentro de una sesión de Meterpreter
+| Quiero... | Comando |
+|---|---|
+| Ver todos los comandos disponibles | `help` |
+| Ver información del sistema | `sysinfo` |
+| Saber con qué usuario estoy (equivalente a whoami) | `getuid` |
+| Bajar a una shell normal del sistema | `shell` |
+| Salir de esa shell y volver a Meterpreter | `exit` o `Ctrl+D` |
+| Dejar la sesión abierta y volver a msfconsole | `background` |
+| Ver / volver a una sesión | `sessions -l` / `sessions -i N` |
+| Ver usuarios del sistema (desde `shell`) | `cat /etc/passwd` |
+| Ver hashes de contraseñas, solo como root (desde `shell`) | `cat /etc/shadow` |
+
 ## Pendiente de añadir en próximas lecciones
-Metasploit, explotación, escalada de privilegios, contraseñas (Hydra), Wireshark y
-detección con SIEM.
+Escalada de privilegios, contraseñas (Hydra), Wireshark y detección con SIEM.

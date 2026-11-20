@@ -21,8 +21,11 @@ Una lección al día.
 | 03 | [Reconocimiento con nmap](lessons/03-nmap.md) | 17/11/2026 | Hecha |
 | 04 | [Enumeración y búsqueda de vulnerabilidades](lessons/04-enumeracion-y-vulnerabilidades.md) | 18/11/2026 | Hecha |
 
+| 05 | [Primera explotación con Metasploit](lessons/05-metasploit-explotacion.md) | 19/11/2026 | Hecha |
+
 ## Writeups
 - [Escaneo de Metasploitable](writeups/escaneo-metasploitable.md)
+- [Explotación de vsftpd 2.3.4 con Metasploit](writeups/explotacion-vsftpd-metasploitable.md)
 
 ## Cheatsheets
 - [Guía rápida: "quiero hacer X → uso Y"](cheatsheets/00-guia-rapida.md)
