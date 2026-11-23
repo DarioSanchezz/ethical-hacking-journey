@@ -23,6 +23,7 @@ Una lección al día.
 
 | 05 | [Primera explotación con Metasploit](lessons/05-metasploit-explotacion.md) | 19/11/2026 | Hecha |
 | 06 | [Cracking de contraseñas](lessons/06-cracking-contraseñas.md) | 20/11/2026 | Hecha |
+| 07 | [Docker y OWASP Juice Shop](lessons/07-docker-juice-shop.md) | 23/11/2026 | Hecha |
 
 ## Writeups
 - [Escaneo de Metasploitable](writeups/escaneo-metasploitable.md)
