@@ -5,7 +5,7 @@ conseguir**, no por herramienta. `IP` = la IP del objetivo (en mi lab, Metasploi
 
 > Solo se practica en mi laboratorio o con autorización por escrito.
 
-**Última actualización:** Lección 07
+**Última actualización:** Lección 08
 
 ---
 
