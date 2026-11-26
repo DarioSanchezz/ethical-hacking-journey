@@ -5,7 +5,7 @@ conseguir**, no por herramienta. `IP` = la IP del objetivo (en mi lab, Metasploi
 
 > Solo se practica en mi laboratorio o con autorización por escrito.
 
-**Última actualización:** Lección 10
+**Última actualización:** Lección 11
 
 ---
 
@@ -281,5 +281,16 @@ Cracking de hash = rápido y sin ruido (offline) · Hydra = lento y detectable (
 | Comprobar si un campo guarda el payload tal cual, lo escapa o lo rechaza | Clic derecho sobre el resultado → Inspeccionar, y mirar el HTML generado |
 | Ver si una página usa Angular (SPA) o es renderizada por el servidor | Pestaña Red: una recarga completa `POST → 302 → GET` (en vez de llamadas a `/rest/...`) indica servidor/plantilla, no SPA |
 
+## 22. RBAC, API con curl y OWASP ZAP
+| Quiero... | Cómo |
+|---|---|
+| Instalar y arrancar ZAP | `sudo apt install -y zaproxy` / `zaproxy &` |
+| Buscar rutas ocultas de una SPA (Angular/React) | **No** sirve `gobuster` (son rutas de cliente, no carpetas reales); inspeccionar el JS descargado en la pestaña Red, o `curl` + `grep` del bundle buscando `path:"..."` |
+| Buscar carpetas/archivos reales del servidor | `gobuster dir -u http://IP -w /usr/share/wordlists/dirb/common.txt` (esto sí aplica aquí) |
+| Loguearse por API con curl (SQLi o credenciales reales) | `curl -s -X POST http://IP:3000/rest/user/login -H "Content-Type: application/json" -d "{\"email\":\"EMAIL\",\"password\":\"PASS\"}"` |
+| Llamar a un endpoint de API con token | `curl -s http://IP:3000/api/Modelo/ -H "Authorization: Bearer TOKEN"` |
+| Probar escritura/borrado como usuario sin privilegios | `curl -s -X DELETE http://IP:3000/api/Modelo/ID -H "Authorization: Bearer TOKEN"` |
+| Confirmar que la VM se quedó sin memoria (no colgada) | `dmesg \| grep -i -E "out of memory\|oom"` |
+
 ## Pendiente de añadir en próximas lecciones
-Escaneo automatizado (OWASP ZAP), control de acceso por roles, Active Directory, Wireshark y detección con SIEM.
+Repetir escaneo automatizado con OWASP ZAP (con más RAM en la VM), Active Directory, Wireshark y detección con SIEM.

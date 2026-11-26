@@ -27,6 +27,7 @@ Una lección al día.
 | 08 | [Burp Suite y primeras vulnerabilidades web](lessons/08-burp-vulnerabilidades-web.md) | 23/11/2026 | Hecha |
 | 09 | [XSS y manipulación de JWT](lessons/09-xss-jwt.md) | 24/11/2026 | Hecha |
 | 10 | [Robo de cookies vía XSS y comparación de puntos de inyección](lessons/10-robo-cookies-xss-avanzado.md) | 24/11/2026 | Hecha |
+| 11 | [RBAC y primer contacto con OWASP ZAP](lessons/11-rbac-owasp-zap.md) | 26/11/2026 | Hecha |
 
 ## Writeups
 - [Escaneo de Metasploitable](writeups/escaneo-metasploitable.md)
@@ -35,6 +36,7 @@ Una lección al día.
 - [Primeras vulnerabilidades web en Juice Shop](writeups/juice-shop-primeras-vulnerabilidades.md)
 - [XSS y manipulación de JWT en Juice Shop](writeups/juice-shop-xss-jwt.md)
 - [Robo de cookies vía XSS y comparación de puntos de inyección](writeups/juice-shop-robo-cookies-xss.md)
+- [Control de acceso roto (RBAC) en la API](writeups/juice-shop-rbac-api.md)
 
 ## Cheatsheets
 - [Guía rápida: "quiero hacer X → uso Y"](cheatsheets/00-guia-rapida.md)
